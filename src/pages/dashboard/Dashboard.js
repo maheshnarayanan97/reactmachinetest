@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import {
-  Container,
-  Jumbotron
-} from 'reactstrap';
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
 
-import './Dashboard.css';
+import { Container, Jumbotron } from "reactstrap";
+import { useSelector } from "react-redux";
 
-const Dashboard = ({ isAuthenticated, user }) => {
+import "./Dashboard.css";
+
+const Dashboard = ({ isAuthenticated }) => {
+  const authData = useSelector((state) => state.auth);
+
   return (
     <div className="Dashboard">
       <Container>
@@ -20,30 +20,25 @@ const Dashboard = ({ isAuthenticated, user }) => {
               </h1>
               <br />
               <h1 className="dashboard-text display-4">
-                {user.first_name}
+                {authData.data.userData.username}
               </h1>
             </Fragment>
           ) : (
-              <Fragment>
-                <h1 className="dashboard-heading display-3">
-                  Welcome to Dashboard
+            <Fragment>
+              <h1 className="dashboard-heading display-3">
+                Welcome to Dashboard
               </h1>
-              </Fragment>
-            )}
+            </Fragment>
+          )}
         </Jumbotron>
       </Container>
     </div>
   );
-}
-
-Dashboard.propTypes = {
-  isAuthenticated: PropTypes.bool,
-  user: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps)(Dashboard);

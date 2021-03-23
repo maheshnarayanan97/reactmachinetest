@@ -17,7 +17,7 @@ import { clearErrors } from "../../actions/errorActions";
 
 class Register extends Component {
   state = {
-    fname: "",
+    phone: "",
 
     email: "",
     username: "",
@@ -74,19 +74,11 @@ class Register extends Component {
   onHandleSubmit = (e) => {
     e.preventDefault();
 
-    const {
-      fname,
-
-      email,
-      username,
-      password,
-      cPassword,
-    } = this.state;
+    const { phone, email, username, password, cPassword } = this.state;
 
     // Define the user
     const user = {
-      firstName: fname,
-
+      phone,
       email,
       username,
       password,
@@ -111,18 +103,6 @@ class Register extends Component {
           ) : null}
           <Form onSubmit={this.onHandleSubmit}>
             <FormGroup>
-              <Label htmlFor="fname">First Name</Label>
-              <Input
-                className="form-control form-control-lg"
-                name="fname"
-                id="fname"
-                type="text"
-                placeholder="First Name"
-                onChange={this.onHandleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
               <Label htmlFor="email">Email</Label>
               <Input
                 className="form-control form-control-lg"
@@ -130,6 +110,17 @@ class Register extends Component {
                 id="email"
                 type="email"
                 placeholder="Email"
+                onChange={this.onHandleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="email">Phone</Label>
+              <Input
+                className="form-control form-control-lg"
+                name="phone"
+                id="phone"
+                type="text"
+                placeholder="phone"
                 onChange={this.onHandleChange}
               />
             </FormGroup>

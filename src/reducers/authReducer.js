@@ -6,14 +6,14 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
-  AUTH_ERROR
-} from '../actions/types';
+  AUTH_ERROR,
+} from "../actions/types";
 
 const initialState = {
-  token: localStorage.getItem('access_token'),
+  token: localStorage.getItem("access_token"),
   isAuthenticated: null,
   isLoading: false,
-  user: null
+  user: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -21,34 +21,35 @@ const authReducer = (state = initialState, action) => {
     case USER_LOADING:
       return {
         ...state,
-        isLoading: true
-      }
+        isLoading: true,
+      };
 
     case USER_LOADED:
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload
-      }
+        user: action.payload,
+      };
 
     case REGISTER_SUCCESS:
-      localStorage.setItem('access_token', action.payload.token);
+      localStorage.setItem("access_token", action.payload.token);
       return {
         ...state,
         ...action.payload,
         isAuthenticated: false,
-        isLoading: false
-      }
+        isLoading: false,
+      };
 
     case LOGIN_SUCCESS:
-      localStorage.setItem('access_token', action.payload.token);
+      localStorage.setItem("access_token", action.payload.token);
       return {
         ...state,
         ...action.payload,
+        userData: action.payload.userData,
         isAuthenticated: true,
-        isLoading: false
-      }
+        isLoading: false,
+      };
 
     case AUTH_ERROR:
     case LOGOUT_SUCCESS:
@@ -60,12 +61,12 @@ const authReducer = (state = initialState, action) => {
         token: null,
         isAuthenticated: false,
         isLoading: false,
-        user: null
-      }
+        user: null,
+      };
 
     default:
       return state;
   }
-}
+};
 
 export default authReducer;

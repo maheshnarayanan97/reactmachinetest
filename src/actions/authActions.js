@@ -35,7 +35,7 @@ export const loadUser = () => (dispatch, getState) => {
 
 // Register user
 export const registerUser = (
-  { firstName, lastName, age, email, username, password, cPassword },
+  { phone, email, username, password, cPassword },
   history
 ) => (dispatch) => {
   // Set headers value
@@ -47,9 +47,7 @@ export const registerUser = (
 
   // Parsing body
   const body = JSON.stringify({
-    firstName,
-    lastName,
-    age,
+    phone,
     email,
     username,
     password,
@@ -88,8 +86,8 @@ export const loginUser = ({ username, password }, history) => (dispatch) => {
   };
 
   // Parsing body
-  const body = JSON.stringify({ username, password });
-
+  const body = JSON.stringify({ email: username, password });
+  console.log(body);
   // Login
   axios
     .post("https://devgroceryapi.spericorn.com/api/auth/login", body, config)
