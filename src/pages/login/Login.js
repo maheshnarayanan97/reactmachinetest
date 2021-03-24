@@ -99,6 +99,7 @@ class Login extends Component {
                 type="text"
                 placeholder="Email"
                 onChange={this.onHandleChange}
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -110,6 +111,7 @@ class Login extends Component {
                 type="password"
                 placeholder="Password"
                 onChange={this.onHandleChange}
+                required
               />
             </FormGroup>
             <Button className="btn-login btn-lg" type="submit">
